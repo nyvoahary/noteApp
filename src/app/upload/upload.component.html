@@ -1,0 +1,39 @@
+<!-- preview -->
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h2>Upload tasks</h2>
+  <h3 *ngIf="fileLength == 0">
+    Please select a picture
+  </h3>
+  <h3 *ngIf="fileLength > 0">
+    Image preview
+  </h3>
+  <div class="image" [style.backgroundImage]="'url('+url+')'">
+  </div>
+  <span>
+    <a *ngIf="fileLength == 0" mat-button color="warn" (click)="file.click()">Browse</a>
+    <a *ngIf="fileLength > 0" mat-button color="warn" (click)="file.click()">Change</a>
+    <span *ngIf="fileLength == 0">
+      No file chosen
+    </span>
+    <span *ngIf="fileLength > 0">
+      {{fileName}}
+    </span>
+    <span *ngIf="fileLength > 0">
+      Size: {{fileSize | number}} {{units}}
+    </span>
+  </span>
+
+  <h3 *ngIf="(loading$)">
+    Upload progress: {{loading$ | async | number}} %
+  </h3>
+
+  <div *ngIf="downloadUrl$">
+    The DownloadUrl are: {{downloadUrl$ | async}}
+  </div>
+
+  <form [formGroup]="fileForm">
+    <input type="file" style="display: none;" #file formControlName="file" accept=".jpg,.png,.jpeg"
+      (change)="onChange($event)" name="file" id="file">
+    <button [disabled]='fileLength==0' mat-raised-button (click)="uploadTasks()">Upload</button>
+  </form>
+</div>

@@ -1,13 +1,15 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button>
-    <mat-icon>menu</mat-icon>
+  <img src="../assets/images/logo.svg" id="home" routerLink='/home' alt="logo" height="30px">
+  <span routerLink='/home' id="home" mat-button>Naut'kou</span>
+  <span class="spacer"></span>
+  <button mat-icon-button routerLink='/login'>
+    <mat-icon>login</mat-icon>
   </button>
-    <span>My App</span>
-    <span class="spacer"></span>
-    <button mat-icon-button>
-    <mat-icon>favorite</mat-icon>
+  <button mat-icon-button routerLink='/register'>
+    <mat-icon>person_add_alt</mat-icon>
   </button>
-    <button mat-icon-button>
-    <mat-icon>share</mat-icon>
+  <button mat-icon-button (click)="logOut()">
+    <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>
+<router-outlet></router-outlet>

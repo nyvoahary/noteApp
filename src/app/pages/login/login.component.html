@@ -1,1 +1,14 @@
-<p>login works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="logIn()" fxLayout="column" fxLayoutAlign="center center">
+  <h2>Login forms</h2>
+  <mat-form-field appearance="legacy">
+    <mat-label>Enter email address</mat-label>
+    <input type="email" autocomplete="off" formControlName="email" matInput placeholder="test@test.test" />
+    <mat-error>Not a valid mail</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="legacy">
+    <mat-label>Enter password</mat-label>
+    <input type="password" autocomplete="off" formControlName="password" matInput />
+    <mat-error>Not a valid password</mat-error>
+  </mat-form-field>
+  <button mat-raised-button [disabled]="!loginForm.valid" color="accent">Login</button>
+</form>

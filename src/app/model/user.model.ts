@@ -1,6 +1,6 @@
 export interface User {
-  displayName?:any;
-  email?:any;
+  displayName:any;
+  email:any;
   uid?:any;
-  password?:any;
+  password:any;
 }

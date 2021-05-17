@@ -1,3 +1,4 @@
+import { TodoService } from './services/todo.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Application';
+  constructor(private todoService:TodoService){}
+  logOut(){
+    this.todoService.logOut()
+  }
 }
