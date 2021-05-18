@@ -1,10 +1,9 @@
 import { AngularFireAuth } from '@angular/fire/auth';
-import { UploadService } from './../services/upload.service';
+import { UploadService } from '../../services/upload.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TodoService } from './../services/todo.service';
+import { TodoService } from '../../services/todo.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators'
 import { AngularFireStorage } from '@angular/fire/storage';
 
@@ -26,7 +25,8 @@ export class UploadComponent implements OnInit {
 
   fileForm = new FormGroup({
     file: new FormControl('', Validators.required)
-  })
+  });
+
 
   constructor(
     private todoService: TodoService,
@@ -71,8 +71,8 @@ export class UploadComponent implements OnInit {
 
     //DownloadUrl
     task.snapshotChanges().pipe(finalize(() => {
-      this.downloadUrl$ = fileRef.getDownloadURL()
-
+      this.downloadUrl$ = fileRef.getDownloadURL();
+      this.todoService.currentUser.updatePicture(this.downloadUrl$);
     })).subscribe()
   }
 }

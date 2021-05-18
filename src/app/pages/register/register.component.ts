@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   register() {
     let record: User = this.registerForm.value;
     this.todoService.register(record).then(() => {
-      this.router.navigate(['/todo']);
+      this.router.navigate(['/upload']);
     }).catch((error)=>{
       console.log(error.t.message);
     })

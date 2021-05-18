@@ -47,6 +47,7 @@ export class TodoService {
     })
   }
 
+
   // LOGIN
   logIn(email: string, password: any) {
     return this.fireAuth.signInWithEmailAndPassword(email, password).then((user) => {

@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Firebase
 import { AngularFireModule } from '@angular/fire'
 import { environment } from './../environments/environment.prod';
+import {AngularFirestoreModule} from '@angular/fire/firestore'
 //Storage
 import { AngularFireStorageModule } from '@angular/fire/storage';
 
@@ -31,7 +32,7 @@ import { TodoComponent } from './pages/todo/todo.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
-import { UploadComponent } from './upload/upload.component';
+import { UploadComponent } from './pages/upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { UploadComponent } from './upload/upload.component';
 
     //FireBase
     AngularFireStorageModule,
+    AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
