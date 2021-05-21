@@ -1,3 +1,4 @@
+import { FirestoreService } from './../../services/firestore.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UploadService } from '../../services/upload.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -6,6 +7,7 @@ import { TodoService } from '../../services/todo.service';
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators'
 import { AngularFireStorage } from '@angular/fire/storage';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({
@@ -14,8 +16,10 @@ import { AngularFireStorage } from '@angular/fire/storage';
   styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent implements OnInit {
-  loading$: any ;
-  downloadUrl$: any;
+  loading$: any;
+  // urlPhoto:any='';
+  downloadUrl$ = new BehaviorSubject<any | null>(null)
+  downloadUrl: any;
   fileSize: number = 0;
   units: string = '';
   fileLength: number = 0;
@@ -32,7 +36,11 @@ export class UploadComponent implements OnInit {
     private todoService: TodoService,
     private router: Router,
     private uploadService: UploadService,
+    private firestoreService: FirestoreService,
     private storage: AngularFireStorage) {
+    this.downloadUrl$.subscribe((url) => {
+      this.downloadUrl = url;
+    })
   }
 
   ngOnInit(): void {
@@ -71,8 +79,18 @@ export class UploadComponent implements OnInit {
 
     //DownloadUrl
     task.snapshotChanges().pipe(finalize(() => {
-      this.downloadUrl$ = fileRef.getDownloadURL();
-      this.todoService.currentUser.updatePicture(this.downloadUrl$);
-    })).subscribe()
+      let urlPhoto = fileRef.getDownloadURL();
+      this.downloadUrl$.next(urlPhoto);
+      urlPhoto.subscribe((test) => {
+        console.log(test);
+        urlPhoto = test;
+        this.firestoreService.updateUrl(urlPhoto)
+      })
+      console.log('voantso service');
+
+
+    })).subscribe();
+
+
   }
 }

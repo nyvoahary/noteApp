@@ -4,3 +4,11 @@
 #home:hover {
   cursor: pointer;
 }
+div.profilPicture{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

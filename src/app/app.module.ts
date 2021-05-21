@@ -21,6 +21,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 //Material
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -55,6 +56,7 @@ import { UploadComponent } from './pages/upload/upload.component';
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
+    MatCardModule,
     //fxLayout
     FlexLayoutModule,
 

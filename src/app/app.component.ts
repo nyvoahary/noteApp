@@ -1,3 +1,4 @@
+import { FirestoreService } from './services/firestore.service';
 import { TodoService } from './services/todo.service';
 import { Component } from '@angular/core';
 
@@ -7,9 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Application';
-  constructor(private todoService:TodoService){}
+  us$ =this.firestoreService.userDetails$ 
+  constructor(
+    private todoService:TodoService,
+    private firestoreService:FirestoreService,
+    ){}
   logOut(){
     this.todoService.logOut()
+  }
+  getUserDetails(){
+  this.firestoreService.getUserDetails().subscribe((userData)=>{
+    console.log(userData);
+  })
   }
 }

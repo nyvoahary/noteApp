@@ -2,22 +2,24 @@ import { User } from './../model/user.model';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
   authState: any = {};
+  authState$ = new BehaviorSubject<any | null>(null)
 
   constructor(
     private fireAuth: AngularFireAuth,
     private router: Router,
   ) {
-
     this.fireAuth.onAuthStateChanged((user) => {
       if (user) {
         this.authState = user
-        console.log('UserId', user);
+        this.authState$.next(user)
+        console.log(user);
       } else {
         console.log('User signed out');
       }
@@ -27,14 +29,17 @@ export class TodoService {
   //  REGISTER
   register(record: User) {
     return this.fireAuth.createUserWithEmailAndPassword(record.email, record.password).then((user) => {
+      if (user) {
+        this.authState$.next(user.user)
+      }
       this.authState = user.user;
       this.authState.updateProfile({ displayName: record.displayName });
       this.authState.sendEmailVerification();
       console.log(this.authState);
-
+      this.router.navigate(['/upload'])
     }).catch((error) => {
       console.log(error.message);
-      this.router.navigate(['register'])
+      this.router.navigate(['/register'])
     });
   }
 
@@ -51,6 +56,9 @@ export class TodoService {
   // LOGIN
   logIn(email: string, password: any) {
     return this.fireAuth.signInWithEmailAndPassword(email, password).then((user) => {
+      if (user) {
+        this.authState$.next(user.user);
+      }
       this.authState = user.user;
       console.log(user);
       console.log('Login Successfully');
@@ -70,16 +78,16 @@ export class TodoService {
 
   // Firebase data getter functions
   get isUserAnonymousLoggedIn(): boolean {
-    return this.authState !== null ? this.authState.isAnonymous : false;
+    return this.authState$ !== null ? this.authState.isAnonymous : false;
   }
   get currentUserId(): string {
-    return this.authState !== null ? this.authState.uid : '';
+    return this.authState$ !== null ? this.authState.uid : '';
   }
   get currentUserName(): string {
     return this.authState['email'];
   }
   get currentUser(): any {
-    return this.authState !== null ? this.authState : null;
+    return this.authState$ !== null ? this.authState$ : null;
   }
   get isUserEmailLoggedIn(): boolean {
     if (this.authState !== null && !this.isUserAnonymousLoggedIn) {

@@ -12,9 +12,12 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   registerForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-    displayName: new FormControl(''),
+    email: new FormControl('',Validators.compose([Validators.required,Validators.email])),
+    password: new FormControl('',Validators.compose([
+      Validators.required,
+      // Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{6,30}'), //must be at least 1 upperCase,lowerCase,digit and between 8-30
+      Validators.minLength(6)])),
+    displayName: new FormControl('',Validators.required),
   })
   constructor(private todoService: TodoService, private fb: FormBuilder, private router: Router) { }
 
@@ -23,7 +26,6 @@ export class RegisterComponent implements OnInit {
   register() {
     let record: User = this.registerForm.value;
     this.todoService.register(record).then(() => {
-      this.router.navigate(['/upload']);
     }).catch((error)=>{
       console.log(error.t.message);
     })

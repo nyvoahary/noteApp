@@ -1,4 +1,5 @@
-import { Todo } from './../../model/note';
+import { Router } from '@angular/router';
+import { Todo } from '../../model/todo.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FirestoreService } from './../../services/firestore.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,12 +16,23 @@ export class TodoComponent implements OnInit {
   })
   constructor(
     private firestoreService:FirestoreService,
+    private router: Router,
   ) { }
 
   addTodo(){
-    let todo:Todo = this.todoForm.value
-    todo.timeStamp = new Date(Date.now())
+    let todo:Todo = this.todoForm.value;
+    todo.timeStamp = new Date(Date.now());
+    todo.state = 'pending';
+
     this.firestoreService.addTodo(todo).then(()=>{
+      this.todoForm.patchValue({
+        title:'',
+        description:'',
+      });
+      console.log();
+
+    }).catch((error)=>{
+      console.log(error);
 
     })
   }

@@ -27,8 +27,8 @@
     Upload progress: {{loading$ | async | number}} %
   </h3>
 
-  <div *ngIf="downloadUrl$">
-    The DownloadUrl are: {{downloadUrl$ | async}}
+  <div *ngIf="downloadUrl">
+    The DownloadUrl are: {{downloadUrl | async}}
   </div>
 
   <form [formGroup]="fileForm">

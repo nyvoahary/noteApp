@@ -1,19 +1,22 @@
-<form [formGroup]="registerForm" (ngSubmit)="register()" fxLayout="column" fxLayoutAlign="center center">
-  <h2>Register forms</h2>
-  <mat-form-field appearance="legacy">
-    <mat-label>Enter email address</mat-label>
-    <input type="email" autocomplete="off" formControlName="email" matInput placeholder="test@test.test" />
-    <mat-error>Not a valid mail</mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="legacy">
-    <mat-label>Enter password</mat-label>
-    <input type="password" autocomplete="off" formControlName="password" matInput />
-    <mat-error>Not a valid password</mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="legacy">
-    <mat-label>Enter your pseudo</mat-label>
-    <input type="text" autocomplete="on" formControlName="displayName" matInput  />
-    <mat-error>Invalid Pseudo</mat-error>
-  </mat-form-field>
-  <button mat-raised-button [disabled]="!registerForm.valid" color="accent">Register</button>
-</form>
+<div class="container">
+  <form [formGroup]="registerForm" (ngSubmit)="register()" fxLayout="column" fxLayoutAlign="center center">
+    <h2>Register forms</h2>
+    <mat-form-field appearance="legacy">
+      <mat-label>Enter email address</mat-label>
+      <input type="email" autocomplete="off" formControlName="email" matInput placeholder="test@test.test" />
+      <mat-error>Not a valid mail</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Enter password</mat-label>
+      <input type="password" autocomplete="off" formControlName="password" matInput />
+      <mat-error>Not a valid password</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Enter your pseudo</mat-label>
+      <input type="text" autocomplete="on" formControlName="displayName" matInput  />
+      <mat-error>Invalid Pseudo</mat-error>
+    </mat-form-field>
+    <button mat-raised-button [disabled]="registerForm.invalid" color="accent">Register</button>
+  </form>
+
+</div>

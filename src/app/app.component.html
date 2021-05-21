@@ -15,5 +15,7 @@
   <button mat-icon-button (click)="logOut()">
     <mat-icon>logout</mat-icon>
   </button>
+  <div *ngIf="(us$ | async)?.downloadUrl" class="profilPicture" [ngStyle]="{'background-image': 'url(' + (us$ | async)?.downloadUrl + ')' }"></div>
 </mat-toolbar>
+
 <router-outlet></router-outlet>
