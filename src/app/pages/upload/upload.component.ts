@@ -36,7 +36,6 @@ export class UploadComponent implements OnInit {
     private todoService: TodoService,
     private router: Router,
     private uploadService: UploadService,
-    private firestoreService: FirestoreService,
     private storage: AngularFireStorage) {
     this.downloadUrl$.subscribe((url) => {
       this.downloadUrl = url;
@@ -84,13 +83,9 @@ export class UploadComponent implements OnInit {
       urlPhoto.subscribe((test) => {
         console.log(test);
         urlPhoto = test;
-        this.firestoreService.updateUrl(urlPhoto)
+        this.todoService.updateUrl(urlPhoto)
       })
       console.log('voantso service');
-
-
     })).subscribe();
-
-
   }
 }

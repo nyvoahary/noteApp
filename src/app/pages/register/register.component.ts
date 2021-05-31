@@ -19,7 +19,11 @@ export class RegisterComponent implements OnInit {
       Validators.minLength(6)])),
     displayName: new FormControl('',Validators.required),
   })
-  constructor(private todoService: TodoService, private fb: FormBuilder, private router: Router) { }
+  constructor(
+    private todoService: TodoService,
+    private fb: FormBuilder,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {}
 

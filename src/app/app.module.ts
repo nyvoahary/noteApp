@@ -27,6 +27,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatGridListModule } from '@angular/material/grid-list';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 //Component
 import { TodoComponent } from './pages/todo/todo.component';
@@ -34,6 +37,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { UploadComponent } from './pages/upload/upload.component';
+import { SubjectComponent } from './pages/subject/subject.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,8 @@ import { UploadComponent } from './pages/upload/upload.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    UploadComponent
+    UploadComponent,
+    SubjectComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +62,10 @@ import { UploadComponent } from './pages/upload/upload.component';
     MatButtonModule,
     MatInputModule,
     MatCardModule,
+    MatMenuModule,
+    MatGridListModule,
+    MatExpansionModule,
+
     //fxLayout
     FlexLayoutModule,
 

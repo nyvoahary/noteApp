@@ -1,17 +1,47 @@
-<form (ngSubmit)="addTodo()" [formGroup]="todoForm" fxLayout="row" fxLayoutAlign="space-evenly center" >
+<form (ngSubmit)="addTodo()" [formGroup]="todoForm" fxLayout="row" fxLayoutAlign="space-evenly center">
   <span></span>
   <span></span>
-  <span></span>
-  <mat-form-field appearance="standard"  color="accent" >
+  <mat-form-field appearance="standard" color="accent">
     <mat-label>Add title</mat-label>
     <input autocomplete="off" formControlName="title" matInput placeholder="Add note ...">
   </mat-form-field>
-  <mat-form-field appearance="standard"  color="accent" >
+  <mat-form-field appearance="standard" color="accent">
     <mat-label>Add description</mat-label>
     <input autocomplete="off" formControlName="description" matInput placeholder="Add note ...">
-    <button [disabled]='todoForm.invalid' mat-icon-button matSuffix  ><mat-icon>send</mat-icon></button>
+    <button [disabled]='todoForm.invalid' mat-icon-button matSuffix>
+      <mat-icon>send</mat-icon>
+    </button>
   </mat-form-field>
   <span></span>
   <span></span>
-  <span></span>
 </form>
+<section>
+  <mat-accordion>
+    <div *ngFor="let todo of this.todoService.todoList">
+
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+
+          <mat-panel-title>
+            {{todo.title}}
+          </mat-panel-title>
+
+          <mat-panel-description>
+            {{todo.description}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input matInput type="text" [value]="todo.title">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <input matInput type="text" [value]='todo.description'>
+        </mat-form-field>
+
+      </mat-expansion-panel>
+    </div>
+  </mat-accordion>
+</section>

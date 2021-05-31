@@ -1,0 +1,13 @@
+mat-grid-tile:first-child {
+  background-color: rgba(107, 228, 255, 0.487);
+}
+mat-grid-tile {
+  background-color: rgba(128, 128, 128, 0.487);
+  display: flex;
+}
+mat-grid-tile:nth-child(odd) {
+  background-color: rgba(220, 206, 206, 0.487);
+}
+.spacer{
+  flex:1 1 auto
+}

@@ -2,20 +2,38 @@
   <img src="../assets/images/logo.svg" id="home" routerLink='/home' alt="logo" height="30px">
   <span routerLink='/home' id="home" mat-button>Naut'kou</span>
   <span class="spacer"></span>
-  <button mat-icon-button routerLink='/upload'>
-    <mat-icon>file_upload</mat-icon>
+  <span id="email">
+    {{this.todoService.currentUserName}}<br>
+    {{this.todoService.currentUserEmail}}
+   </span>
+
+  <div *ngIf="(us$ | async)?.downloadUrl && this.todoService.currentUserName" class="profilPicture"
+    [ngStyle]="{'background-image': 'url(' + (us$ | async)?.downloadUrl + ')' }"></div>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
   </button>
-  <span class="spacer"></span>
-  <button mat-icon-button routerLink='/login'>
-    <mat-icon>login</mat-icon>
-  </button>
-  <button mat-icon-button routerLink='/register'>
-    <mat-icon>person_add_alt</mat-icon>
-  </button>
-  <button mat-icon-button (click)="logOut()">
-    <mat-icon>logout</mat-icon>
-  </button>
-  <div *ngIf="(us$ | async)?.downloadUrl" class="profilPicture" [ngStyle]="{'background-image': 'url(' + (us$ | async)?.downloadUrl + ')' }"></div>
+  <mat-menu #menu="matMenu">
+    <button *ngIf="state" mat-menu-item (click)="logOut()" >
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+    <button *ngIf="!state" mat-menu-item routerLink='/login'>
+      <mat-icon>login</mat-icon>
+      <span>Login</span>
+    </button>
+    <button *ngIf="!state" mat-menu-item routerLink='/register'>
+      <mat-icon>person_add_alt</mat-icon>
+      <span>Register</span>
+    </button>
+    <button *ngIf="state" mat-menu-item routerLink='/todo'>
+      <mat-icon>event_note</mat-icon>
+      <span>Todo</span>
+    </button>
+    <button *ngIf="state" mat-menu-item routerLink='/upload'>
+      <mat-icon>file_upload</mat-icon>
+      <span>Update picture</span>
+    </button>
+  </mat-menu>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

@@ -1,14 +1,23 @@
-.spacer {
-  flex: 1 1 auto;
-}
-#home:hover {
-  cursor: pointer;
-}
-div.profilPicture{
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+:host {
+  .spacer {
+    flex: 1 1 auto;
+  }
+  #home:hover {
+    cursor: pointer;
+  }
+  .profilPicture {
+    margin-left: 15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #email {
+    font-size: medium;
+    margin: 0;
+    padding: 0;
+    line-height:normal
+  }
 }

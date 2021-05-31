@@ -1,3 +1,4 @@
+import { SubjectComponent } from './pages/subject/subject.component';
 import { TodoComponent } from './pages/todo/todo.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
@@ -7,16 +8,17 @@ import { HomeComponent } from './pages/home/home.component';
 import { UploadComponent } from './pages/upload/upload.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'todo', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'todo', component: TodoComponent },
   { path: 'upload', component: UploadComponent },
+  { path: 'subject', component: SubjectComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,0 +1,11 @@
+<input type="text" [formControl]='inputBinding$'>
+
+<h5 *ngIf="test">Input value :{{test}}</h5>
+<div>
+  <h2>Press random buttom</h2>
+  <p>Subject {{subject}}</p>
+  <p>Behavior {{bSubject}}</p>
+  <p>ReplaySubject: {{repData|json}}</p>
+  <button (click)="sendData()">Send Random</button>
+</div>
+<h2>Test</h2>
