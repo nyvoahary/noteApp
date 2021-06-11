@@ -32,9 +32,6 @@
           <div>
             {{todo.state}}
           </div>
-          <div>
-            {{todo.id}}
-          </div>
         </mat-expansion-panel-header>
 
         <form (ngSubmit)="updateTodo(todo.id)" [formGroup]="updateForm" >
