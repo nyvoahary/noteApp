@@ -2,13 +2,13 @@
   <img src="../assets/images/logo.svg" id="home" routerLink='/home' alt="logo" height="30px">
   <span routerLink='/home' id="home" mat-button>Naut'kou</span>
   <span class="spacer"></span>
+  <div *ngIf="(us$ | async)?.downloadUrl && this.todoService.currentUserName" class="profilPicture"
+    [ngStyle]="{'background-image': 'url(' + (us$ | async)?.downloadUrl + ')' }"></div>
   <span id="email">
-    {{this.todoService.currentUserName}}<br>
+    <b style="font-weight: bolder;" >{{this.todoService.currentUserName}}</b> <br>
     {{this.todoService.currentUserEmail}}
    </span>
 
-  <div *ngIf="(us$ | async)?.downloadUrl && this.todoService.currentUserName" class="profilPicture"
-    [ngStyle]="{'background-image': 'url(' + (us$ | async)?.downloadUrl + ')' }"></div>
   <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
     <mat-icon>more_vert</mat-icon>
   </button>

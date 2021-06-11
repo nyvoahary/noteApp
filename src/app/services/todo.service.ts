@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Todo } from '../model/todo.model';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -157,8 +158,14 @@ export class TodoService {
       console.log('User signedOut, Impossible to fetch todoList');
     }
   }
-  deleteTodo(todo: Todo) {
-    return this.todoCollection!.doc(todo.id)
+  updateTodo(todoId:string,todo:any){
+    return this.todoCollection!.doc(todoId).update({
+      title: todo.title,
+      description: todo.description
+    })
+  }
+  deleteTodo(todoId: string) {
+    return this.todoCollection!.doc(todoId).delete()
   }
   //USER
   getUserDetails() {

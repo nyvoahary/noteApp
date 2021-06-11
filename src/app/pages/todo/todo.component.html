@@ -29,17 +29,27 @@
           <mat-panel-description>
             {{todo.description}}
           </mat-panel-description>
+          <div>
+            {{todo.state}}
+          </div>
+          <div>
+            {{todo.id}}
+          </div>
         </mat-expansion-panel-header>
 
-        <mat-form-field>
-          <mat-label>Title</mat-label>
-          <input matInput type="text" [value]="todo.title">
-        </mat-form-field>
+        <form (ngSubmit)="updateTodo(todo.id)" [formGroup]="updateForm" >
+          <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput [value]="todo.title" formControlName="title" >
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>Description</mat-label>
-          <input matInput type="text" [value]='todo.description'>
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input matInput [value]='todo.description' formControlName="description">
+          </mat-form-field>
+          <button mat-raised-button >Update</button>
+        </form>
+        <button mat-raised-button (click)="deleteTodo(todo.id)" >Delete</button>
 
       </mat-expansion-panel>
     </div>
